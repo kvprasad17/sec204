@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      margin: 5px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Simple Calculator</h2>
+
+  <label>Number 1:</label>
+  <input type="text" id="num1" /><br>
+
+  <label>Number 2:</label>
+  <input type="text" id="num2" /><br>
+
+  <button onclick="add()">Add</button>
+  <button onclick="multiply()">Multiply</button>
+
+  <div id="result"></div>
+
+  <script>
+    function getInputValues() {
+      const n1 = parseFloat(document.getElementById('num1').value);
+      const n2 = parseFloat(document.getElementById('num2').value);
+      return [n1, n2];
+    }
+
+    function add() {
+      const [n1, n2] = getInputValues();
+      if (isNaN(n1) || isNaN(n2)) {
+        document.getElementById('result').innerText = "Please enter valid numbers.";
+        return;
+      }
+      const sum = n1 + n2;
+      document.getElementById('result').innerText = `Result: ${sum}`;
+    }
+
+    function multiply() {
+      const [n1, n2] = getInputValues();
+      if (isNaN(n1) || isNaN(n2)) {
+        document.getElementById('result').innerText = "Please enter valid numbers.";
+        return;
+      }
+      const product = n1 * n2;
+      document.getElementById('result').innerText = `Result: ${product}`;
+    }
+  </script>
+
+</body>
+</html>

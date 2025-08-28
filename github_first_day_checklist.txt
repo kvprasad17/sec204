@@ -1,0 +1,28 @@
+Git & GitHub First-Day Practice
+
+1) Install Git and create a GitHub account.
+2) Configure Git:
+   git config --global user.name "Your Name"
+   git config --global user.email "you@example.com"
+
+3) Create a new repo on GitHub named hello-git.
+4) Clone it:
+   git clone <your repo URL>
+   cd hello-git
+
+5) Create a file, add content, then:
+   git add .
+   git commit -m "Initial commit"
+   git push -u origin main
+
+6) Create a branch:
+   git checkout -b feature/readme-update
+   Edit README.md
+   git add README.md
+   git commit -m "Update README"
+   git push -u origin feature/readme-update
+
+7) Open a Pull Request on GitHub, request a review, and merge.
+8) Pull the latest main:
+   git checkout main
+   git pull

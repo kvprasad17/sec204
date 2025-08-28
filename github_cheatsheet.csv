@@ -1,0 +1,16 @@
+Action,Command,When to use
+Configure name/email (once),"git config --global user.name ""Your Name""; git config --global user.email ""you@example.com""",Identifies your commits
+Initialize repo,git init,Start versioning an existing folder
+Clone repo,git clone <url>,Copy repository to your computer
+Check status,git status,See what changed and what's staged
+Stage changes,git add <file>  |  git add .,Move changes to staging area
+Commit,"git commit -m ""message""",Save staged changes with a message
+Create branch,git checkout -b feature/name,Create and switch to a new branch
+Switch branch,git checkout <branch>,Move between branches
+Pull,git pull,Fetch + merge from remote
+Push,git push -u origin <branch>,Upload your branch to GitHub
+Merge,git merge <branch>,Merge another branch into current
+View history,git log --oneline --graph --all,Compact commit graph
+Undo (last commit keep changes),git reset --soft HEAD~1,"Rewind commit, keep work staged"
+Discard local changes to file,git checkout -- <file>,Revert file to last commit
+Stash work,git stash; git stash pop,Save work-in-progress temporarily

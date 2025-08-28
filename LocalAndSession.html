@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LocalStorage vs SessionStorage Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .box {
+      border: 1px solid #444;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      width: 400px;
+    }
+    input, button {
+      margin-top: 10px;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>LocalStorage vs SessionStorage</h2>
+
+  <!-- LocalStorage Box -->
+  <div class="box">
+    <h3>LocalStorage (Persists even after closing browser)</h3>
+    <input type="text" id="localInput" placeholder="Enter your name">
+    <button onclick="saveLocal()">Save to LocalStorage</button>
+    <button onclick="getLocal()">Get from LocalStorage</button>
+    <button onclick="clearLocal()">Clear LocalStorage</button>
+    <p id="localOutput"></p>
+  </div>
+
+  <!-- SessionStorage Box -->
+  <div class="box">
+    <h3>SessionStorage (Clears when tab/browser is closed)</h3>
+    <input type="text" id="sessionInput" placeholder="Enter your city">
+    <button onclick="saveSession()">Save to SessionStorage</button>
+    <button onclick="getSession()">Get from SessionStorage</button>
+    <button onclick="clearSession()">Clear SessionStorage</button>
+    <p id="sessionOutput"></p>
+  </div>
+
+  <script>
+    // LocalStorage Functions
+    function saveLocal() {
+      let name = document.getElementById("localInput").value;
+      localStorage.setItem("username", name);
+      alert("Saved in LocalStorage!");
+    }
+
+    function getLocal() {
+      let storedName = localStorage.getItem("username");
+      document.getElementById("localOutput").innerText =
+        storedName ? "Stored Name: " + storedName : "No data found!";
+    }
+
+    function clearLocal() {
+      localStorage.removeItem("username");
+      document.getElementById("localOutput").innerText = "";
+      alert("LocalStorage cleared!");
+    }
+
+    // SessionStorage Functions
+    function saveSession() {
+      let city = document.getElementById("sessionInput").value;
+      sessionStorage.setItem("city", city);
+      alert("Saved in SessionStorage!");
+    }
+
+    function getSession() {
+      let storedCity = sessionStorage.getItem("city");
+      document.getElementById("sessionOutput").innerText =
+        storedCity ? "Stored City: " + storedCity : "No data found!";
+    }
+
+    function clearSession() {
+      sessionStorage.removeItem("city");
+      document.getElementById("sessionOutput").innerText = "";
+      alert("SessionStorage cleared!");
+    }
+  </script>
+</body>
+</html>

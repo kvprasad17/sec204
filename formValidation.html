@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation Demo</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        padding: 20px;
+    }
+    form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 400px;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .error {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 3px;
+    }
+    button {
+        margin-top: 15px;
+        padding: 10px;
+        width: 100%;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #218838;
+    }
+</style>
+</head>
+<body>
+
+<h2>Student Form Validation Demo</h2>
+<form id="studentForm" novalidate>
+    <label>Full Name</label>
+    <input type="text" id="fullName" placeholder="Enter your full name">
+    <div class="error" id="fullNameError"></div>
+
+    <label>Username</label>
+    <input type="text" id="username" placeholder="Enter username">
+    <div class="error" id="usernameError"></div>
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter password">
+    <div class="error" id="passwordError"></div>
+
+    <label>Email</label>
+    <input type="email" id="email" placeholder="Enter email">
+    <div class="error" id="emailError"></div>
+
+    <label>Mobile Number</label>
+    <input type="text" id="mobile" placeholder="Enter mobile number">
+    <div class="error" id="mobileError"></div>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+document.getElementById("studentForm").addEventListener("submit", function(event) {
+    let isValid = true;
+
+    // Full Name: Only characters
+    let fullName = document.getElementById("fullName").value.trim();
+    if (!/^[A-Za-z\s]+$/.test(fullName)) {
+        document.getElementById("fullNameError").textContent = "Full name should contain only letters.";
+        isValid = false;
+    } else {
+        document.getElementById("fullNameError").textContent = "";
+    }
+
+    // Username: Only characters, min length 8
+    let username = document.getElementById("username").value.trim();
+    if (!/^[A-Za-z]+$/.test(username) || username.length < 8) {
+        document.getElementById("usernameError").textContent = "Username must be letters only & at least 8 characters.";
+        isValid = false;
+    } else {
+        document.getElementById("usernameError").textContent = "";
+    }
+
+    // Password: Min 8 chars, 1 uppercase, 1 digit, 1 special char
+    let password = document.getElementById("password").value;
+    let passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;'"<>,.?~\\/-]).{8,}$/;
+    if (!passwordPattern.test(password)) {
+        document.getElementById("passwordError").textContent = "Password must have min 8 chars, 1 uppercase, 1 number, 1 special char.";
+        isValid = false;
+    } else {
+        document.getElementById("passwordError").textContent = "";
+    }
+
+    // Email format
+    let email = document.getElementById("email").value.trim();
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        document.getElementById("emailError").textContent = "Enter a valid email address.";
+        isValid = false;
+    } else {
+        document.getElementById("emailError").textContent = "";
+    }
+
+    // Mobile: 10 digits only
+    let mobile = document.getElementById("mobile").value.trim();
+    if (!/^\d{10}$/.test(mobile)) {
+        document.getElementById("mobileError").textContent = "Mobile must be exactly 10 digits.";
+        isValid = false;
+    } else {
+        document.getElementById("mobileError").textContent = "";
+    }
+
+    if (!isValid) {
+        event.preventDefault(); // Stop form submission
+    } else {
+        alert("Form submitted successfully!");
+    }
+});
+</script>
+
+</body>
+</html>
